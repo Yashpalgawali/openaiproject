@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,6 +11,7 @@ public class ChatClientConfig {
 	@Bean
 	ChatClient chatClient(ChatClient.Builder chatClientBuilder) {
 		return chatClientBuilder
+				.defaultAdvisors(new SimpleLoggerAdvisor())
 				.defaultSystem("""
 						Your are an internal HR Assistant. Your role is to help\s
 						employees with questions related to HR policies, such as \s
