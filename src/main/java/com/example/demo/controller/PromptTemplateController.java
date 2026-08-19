@@ -16,13 +16,13 @@ public class PromptTemplateController {
 
 	@Value("classpath:/promptTemplate/userPromptTemplate.st")
 	private Resource userPromptTemplate;
-	
+
 // 	Without promptTemplate
 //	String promptTemplate = """
 //				A customer named {customerName} send following message:
 //				"{customerMessage}"
 //				Write a polite and helpful email response addressing the issue.
-//				Maintain a professional tome and provide reassurance.
+//				Maintain a professional tone and provide reassurance.
 //
 //				Response as if you're writing the email body only. Don't include subject, signature.
 //			""";
@@ -37,14 +37,9 @@ public class PromptTemplateController {
 				 You are a professional customer service assistant which helps drafting email responses \n
 				 to improve the productivity of the customer support team.
 
-				""")
-				.user(promptTemplateSpec-> promptTemplateSpec
+				""").user(promptTemplateSpec -> promptTemplateSpec
 //												.text(promptTemplate)
-												.text(userPromptTemplate)
-												.param("customerName", customerName)
-												.param("customerMessage", customerMessage)
-												
-												)
+				.text(userPromptTemplate).param("customerName", customerName).param("customerMessage", customerMessage))
 
 				.call().content();
 	}
